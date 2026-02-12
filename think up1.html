@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>think up</title>
+  <style>
+    body {
+  font-family: 'cairo', sans-serif;
+  background: url("BackGround.png") no-repeat center center fixed;
+  background-size: cover;
+  text-align: center;
+  direction: rtl;
+  font-size: 22px;
+  position: relative;
+  z-index: 0;
+}
+
+/* طبقة شفافة فوق الخلفية */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* غامق نص شفاف */
+  z-index: -1;
+}
+    h1 { color: #c080d0; }
+    .tab-button {
+      margin: 10px; padding: 10px 20px;
+      background-color: #800020; color: white;
+      border: none; border-radius: 10px;
+      font-size: 20px; cursor: pointer;
+    }
+    .tab-button:hover { background-color: #800020; }
+    .questions { display: none; margin-top: 30px; }
+    .question {
+      background-color:rgba(255,255,255,0.1); padding: 20px;
+      margin: auto; width: 80%; border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: none;
+    }
+    .question.active { display: block; }
+    .answers button {
+      margin: 5px; padding: 10px 15px;
+      background-color: #800020;
+      border: none; border-radius: 8px;
+      cursor: pointer;
+    }
+    .answers button:hover { background-color: #ff8c42; }
+    .score-board {
+      margin-top: 20px; font-size: 30px;
+      color: #ff6a3d; font-weight: bold;
+    }
+    img.icon { width: 200px; }
+  
+.question img {
+  display: block;
+  margin: 0 auto 15px auto;
+  max-width: 250px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(114,47,55);
+}
+
+</style>
+</head>
+<body>
+
+  <h1>think up🎉</h1>
+
+  <!-- أزرار اختيار العيد -->
+  <div>
+    <button class="tab-button" onclick="showTab('easter')">معلومات عامة</button>
+    <button class="tab-button" onclick="showTab('ascension')">English</button>
+    <button class="tab-button" onclick="showTab('temple')">رياضيات</button>
+    <button class="tab-button" onclick="showTab('nativity')">تكنولوجيا</button>
+
+  </div>
+
+  <!-- معلومات عامة -->
+  <div id="easter" class="questions">
+    <br>
+    <div class="question active">
+      ما هي عاصمه مصر؟
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">القاهرة</button>
+        <button onclick="checkAnswer(false, this)">اسكندريه</button>
+        <button onclick="checkAnswer(false, this)">اسوان</button>
+      </div>
+    </div>
+    <div class="question">
+      كم عدد ارجل العنكبوت؟
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">8</button>
+        <button onclick="checkAnswer(false, this)">10</button>
+        <button onclick="checkAnswer(false, this)">7</button>
+      </div>
+    </div>
+    <div class="question">
+      كم عدد الحروف اللغة العربية؟
+      <div class="answers">
+        <button onclick="checkAnswer(false, this)">30</button>
+        <button onclick="checkAnswer(true, this)">28</button>
+        <button onclick="checkAnswer(false, this)">27</button>
+      </div>
+    </div>
+    <div class="question">
+      اطول نهر فى العالم؟
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">النيل</button>
+        <button onclick="checkAnswer(false, this)">السين</button>
+        <button onclick="checkAnswer(false, this)">الامازون</button>
+      </div>
+    </div>
+    <div class="question">
+      كم عدد القارات؟
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">7</button>
+        <button onclick="checkAnswer(false, this)">10</button>
+        <button onclick="checkAnswer(false, this)">8</button>
+      </div>
+    </div>
+    <div class="question">
+      من مخترع المصباح الكهربائي؟
+      <div class="answers">
+        <button onclick="checkAnswer(false, this)">احمد زويل</button>
+        <button onclick="checkAnswer(true, this)">توماس اديسون</button>
+        <button onclick="checkAnswer(false, this)">اورستد</button>
+      </div>
+    </div>
+    <div class="question">
+      في اي قاره تقع مصر؟
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">افريقيا</button>
+        <button onclick="checkAnswer(false, this)">اسيا</button>
+        <button onclick="checkAnswer(false, this)">اوروبا</button>
+      </div>
+    </div>
+    <div class="question">
+      كم عدد الكواكب في المجموعه الشمسيه؟
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">8</button>
+        <button onclick="checkAnswer(false, this)">11</button>
+        <button onclick="checkAnswer(false, this)">7</button>
+      </div>
+    </div>
+    <div class="question">
+      ما الحيوان الذي لا ينام؟
+      <div class="answers">
+        <button onclick="checkAnswer(false, this)">الاسد</button>
+        <button onclick="checkAnswer(true, this)">القرش</button>
+        <button onclick="checkAnswer(false, this)">االفهد</button>
+      </div>
+    </div>
+    <div class="question">
+      ما اسرع حيوان بري؟
+      <div class="answers">
+        <button onclick="checkAnswer(false, this)">الاسد</button>
+        <button onclick="checkAnswer(true, this)">الفهد</button>
+        <button onclick="checkAnswer(false, this)">النمر</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- English -->
+  <div id="ascension" class="questions">
+    <br>
+    <div class="question active">
+      i......a student.
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">am</button>
+        <button onclick="checkAnswer(false, this)">is</button>
+        <button onclick="checkAnswer(false, this)">has</button>
+      </div>
+    </div>
+    <div class="question">
+      what is opposite"big"?
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">small</button>
+        <button onclick="checkAnswer(false, this)">smell</button>
+        <button onclick="checkAnswer(false, this)">fat</button>
+      </div>
+    </div>
+    <div class="question">
+      ......apple.
+      <div class="answers">
+        <button onclick="checkAnswer(false, this)">am</button>
+        <button onclick="checkAnswer(true, this)">an</button>
+        <button onclick="checkAnswer(false, this)">the</button>
+      </div>
+    </div>
+    <div class="question">
+      what is the past of "go" ?
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">went</button>
+        <button onclick="checkAnswer(false, this)">gone</button>
+        <button onclick="checkAnswer(false, this)">go on</button>
+      </div>
+    </div>
+    <div class="question">
+      what is the opposite of"hot"?
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">cold</button>
+        <button onclick="checkAnswer(false, this)">freeze</button>
+        <button onclick="checkAnswer(false, this)">colt</button>
+      </div>
+    </div>
+    <div class="question">
+      how many letters are in the english alphabet?
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">26</button>
+        <button onclick="checkAnswer(false, this)">25</button>
+        <button onclick="checkAnswer(false, this)">20</button>
+      </div>
+    </div>
+    <div class="question">
+      what does "happy" mean
+      <div class="answers">
+        <button onclick="checkAnswer(false, this)">feeling bad</button>
+        <button onclick="checkAnswer(true, this)">feeling good</button>
+        <button onclick="checkAnswer(false, this)">sad</button>
+      </div>
+    </div>
+    <div class="question">
+      what is the comparative of "fast"?
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">faster</button>
+        <button onclick="checkAnswer(false, this)">fasring</button>
+        <button onclick="checkAnswer(false, this)">fasting</button>
+      </div>
+    </div>
+    <div class="question">
+      iam interested ......music
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">in</button>
+        <button onclick="checkAnswer(false, this)">on</button>
+        <button onclick="checkAnswer(false, this)">at</button>
+      </div>
+    </div>
+    <div class="question">
+      what is the plural of "mouse"?
+      <div class="answers">
+        <button onclick="checkAnswer(false, this)">mose</button>
+        <button onclick="checkAnswer(true, this)">mice</button>
+        <button onclick="checkAnswer(false, this)">muse</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- رياضيات -->
+  <div id="temple" class="questions">
+    <br>
+    <div class="question active">
+      20÷5=
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">4</button>
+        <button onclick="checkAnswer(false, this)">5</button>
+        <button onclick="checkAnswer(false, this)">3</button>
+      </div>
+    </div>
+    <div class="question">
+      15+27=
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">42</button>
+        <button onclick="checkAnswer(false, this)">47</button>
+        <button onclick="checkAnswer(false, this)">45</button>
+      </div>
+    </div>
+    <div class="question">
+      50-18=
+      <div class="answers">
+        <button onclick="checkAnswer(false, this)">33</button>
+        <button onclick="checkAnswer(true, this)">32</button>
+        <button onclick="checkAnswer(false, this)">30</button>
+      </div>
+    </div>
+    <div class="question">
+      30÷3+7=
+      <div class="answers">
+        <button onclick="checkAnswer(false, this)">يوحنا</button>
+        <button onclick="checkAnswer(false, this)">سمعان</button>
+        <button onclick="checkAnswer(true, this)">اجابه اخري</button>
+      </div>
+    </div>
+    <div class="question">
+      56÷8=
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">7</button>
+        <button onclick="checkAnswer(false, this)">8</button>
+        <button onclick="checkAnswer(false, this)">9</button>
+      </div>
+    </div>
+    <div class="question">
+      9×7-14=
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">49</button>
+        <button onclick="checkAnswer(false, this)">45</button>
+        <button onclick="checkAnswer(false, this)">48</button>
+      </div>
+    </div>
+    <div class="question">
+      20÷4×3=
+      <div class="answers">
+        <button onclick="checkAnswer(false, this)">14</button>
+        <button onclick="checkAnswer(true, this)">15</button>
+        <button onclick="checkAnswer(false, this)">16</button>
+      </div>
+    </div>
+    <div class="question">
+      100-25×2=
+      <div class="answers">
+        <button onclick="checkAnswer(false, this)">40</button>
+        <button onclick="checkAnswer(false, this)">60</button>
+        <button onclick="checkAnswer(true, this)">50</button>
+      </div>
+    </div>
+    <div class="question">
+      اذاكان س =6 فما قيمه:2س+5
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">دخول المسيح الهيكل</button>
+        <button onclick="checkAnswer(false, this)">دخول المسيح ارض مصر</button>
+        <button onclick="checkAnswer(false, this)">الصعود</button>
+      </div>
+    </div>
+    <div class="question">
+      اذا كان نصف العدد=12 فما هو العدد؟
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">24</button>
+        <button onclick="checkAnswer(false, this)">22</button>
+        <button onclick="checkAnswer(false, this)">25</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- تكنولوجيا -->
+  <div id="nativity" class="questions">
+    <br>
+    <div class="question active">
+      ما الجهاز الذي يخزن البيانات؟
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">الهارد ديسك</button>
+        <button onclick="checkAnswer(false, this)">الهارد وير</button>
+        <button onclick="checkAnswer(false, this)">الراوتر</button>
+      </div>
+    </div>
+    <div class="question">
+      ما وظيفه لوحه المفاتيح؟
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">ادخال البيانات</button>
+        <button onclick="checkAnswer(false, this)">اظهار البيانات</button>
+        <button onclick="checkAnswer(false, this)">اخراج البيانات</button>
+      </div>
+    </div>
+    <div class="question">
+     ما امتداد ملفات الصور الشائع؟
+      <div class="answers">
+        <button onclick="checkAnswer(false, this)">ram</button>
+        <button onclick="checkAnswer(true, this)">jpg</button>
+        <button onclick="checkAnswer(false, this)">mp4</button>
+      </div>
+    </div>
+    <div class="question">
+      ما وحدة قياس سرعه الانترنت؟
+      <div class="answers">
+        <button onclick="checkAnswer(false, this)">mp4</button>
+        <button onclick="checkAnswer(false, this)">mp3</button>
+        <button onclick="checkAnswer(true, this)">mbps</button>
+      </div>
+    </div>
+    <div class="question">
+      htmlما لغه البرمجه المستخدمه في الويب مع 
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">java script</button>
+        <button onclick="checkAnswer(false, this)">python</button>
+        <button onclick="checkAnswer(false, this)">html</button>
+      </div>
+    </div>
+    <div class="question">
+      ما نوع الذاكرة المؤقته في الكمبيوتر
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">ram</button>
+        <button onclick="checkAnswer(false, this)">html</button>
+        <button onclick="checkAnswer(false, this)">mp3</button>
+      </div>
+    </div>
+    <div class="question">
+      ما الامتداد الشائع لملفات الفيديو؟
+      <div class="answers">
+        <button onclick="checkAnswer(false, this)">mp3</button>
+        <button onclick="checkAnswer(true, this)">mp4</button>
+        <button onclick="checkAnswer(false, this)">ram</button>
+      </div>
+    </div>
+    <div class="question">
+      ما وظيفه المعالجcpv
+      <div class="answers">
+        <button onclick="checkAnswer(false, this)">اخراج البيانات</button>
+        <button onclick="checkAnswer(false, this)">تنفيذ البيانات</button>
+        <button onclick="checkAnswer(true, this)">تنفيذ الاوامر</button>
+      </div>
+    </div>
+    <div class="question">
+      ؟"ipaddress"ما هو
+      <div class="answers">
+        <button onclick="checkAnswer(true, this)">عنوان الجهاز علي الشبكه</button>
+        <button onclick="checkAnswer(false, this)">كلمه سر الشبكه</button>
+        <button onclick="checkAnswer(false, this)">كلمه سر الجهاز</button>
+      </div>
+    </div>
+    <div class="question">
+       ؟"machine learning"ما هو
+      <div class="answers">
+        <button onclick="checkAnswer(false, this)">تعلم اللغه</button>
+        <button onclick="checkAnswer(true, this)">تعلم الاله</button>
+        <button onclick="checkAnswer(false, this)">تعلم البرمجه</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- النقاط -->
+  <div class="score-board" id="scoreBoard">النقاط: 0</div>
+
+  <!-- أصوات -->
+  <audio id="correctSound" src="correct.mp3" preload="auto"></audio>
+  <audio id="wrongSound" src="wrong.mp3" preload="auto"></audio>
+
+  <script>
+    let score = 0;
+    function showTab(tabId) {
+      document.querySelectorAll('.questions').forEach(tab => {
+        tab.style.display = 'none';
+        tab.querySelectorAll('.question').forEach(q => q.classList.remove('active'));
+        const first = tab.querySelector('.question');
+        if (first) first.classList.add('active');
+      });
+      document.getElementById(tabId).style.display = 'block';
+    }
+
+    function checkAnswer(isCorrect, button) {
+      if (isCorrect) {
+        score += 1;
+        document.getElementById("correctSound").play();
+        alert("إجابة صحيحة! 🎉");
+      } else {
+        document.getElementById("wrongSound").play();
+        alert("إجابة خاطئة 😢");
+      }
+      document.getElementById("scoreBoard").textContent = "النقاط: " + score;
+
+      // إظهار السؤال التالي
+      const currentQ = button.closest('.question');
+      const nextQ = currentQ.nextElementSibling;
+      if (nextQ && nextQ.classList.contains('question')) {
+        currentQ.classList.remove('active');
+        nextQ.classList.add('active');
+      } else {
+        alert("انتهت الأسئلة 🎊");
+      }
+    }
+  </script>
+
+</body>
+</html>
